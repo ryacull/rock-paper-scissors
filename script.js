@@ -1,60 +1,78 @@
-const arrayRPS = ["rock", "paper", "scissors"];
-const rock = arrayRPS[0];
-const paper = arrayRPS[1];
-const scissors = arrayRPS[2];
-
-//Defining humanChoice and computerChoice
-//let computerChoice;
-//let humanChoice;
-
-//Creating functions for the player and computer's choice.
 function getComputerChoice() {
-    let computerChoice = arrayRPS[(Math.floor(Math.random() * arrayRPS.length))];
+    const arrayRPS = ["rock", "paper", "scissors"];
+    const rock = arrayRPS[0];
+    const paper = arrayRPS[1];
+    const scissors = arrayRPS[2];
+
+    let computerChoice = arrayRPS[(Math.floor(Math.random() * arrayRPS.length))]; 
     return computerChoice;
 }
-console.log(getComputerChoice());
+console.log(getComputerChoice());  //Comment this when code is more functional
 
 function getHumanChoice() {
-    let humanChoice = prompt("Please type one of the follwoing options: ", "rock, paper, scissors");
-    return humanChoice;
+    let humanChoice = prompt("Please type one of the following options: ", "rock, paper, scissors");
+    humanChoice = humanChoice.toLowerCase();
+
+    if (humanChoice === "rock") {
+        return humanChoice;
+    }
+    else if (humanChoice === "paper") {
+        return humanChoice;
+    }
+    else if (humanChoice === "scissors") {
+        return humanChoice;
+    }
+    else {
+        return "try entering 'rock', 'paper' or 'scissors'!";
+    }
 }
-console.log(getHumanChoice());
+console.log(getHumanChoice());  //Comment this when code is more functional
 
-
-// Global scope variables.
+// Keeping score, per round.
 let humanScore = 0;
 let computerScore = 0;
 
 
-
-//Creating playRound function.
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
 function playRound(humanChoice, computerChoice) {
-    if (humanSelection.toLowerCase() === computerSelection) {
-        return("It's a tie.");
+    humanChoice = true;
+    computerChoice = false;
+
+
+    if (humanChoice === "rock" && computerChoice === "paper") {
+        computerScore + 1;
+        return "You lose!  Paper beats rock.";
     }
-    else if (humanSelection === "rock" && computerSelection === "scissors") {
-        return("You win!  Rock beats scissors.");
+
+    else if (humanChoice === "rock" && computerChoice === "scissors") {
+        humanScore + 1;
+        return "You win!  Rock beats scissors.";
     }
-    else if (humanSelection === "rock" && computerSelection === "paper") {
-        return("You lose!  Paper beats rock.");
+
+    else if (humanChoice === "paper" && computerChoice === "rock") {
+        humanScore + 1;
+        return "You win!  Paper beats rock.";
     }
-    else if (humanSelection === "paper" && computerSelection === "rock") {
-        return("You win!  Paper beats rock.");
+
+    else if (humanChoice === "paper" && computerChoice === "scissors") {
+        computerScore + 1;
+        return "You lose!  Scissors beats paper.";
     }
-    else if (humanSelection === "paper" && computerSelection === "scissors") {
-        return("You lose!  Scissors beats paper.");
+
+    else if (humanChoice === "scissors" && computerChoice === "rock") {
+        computerScore + 1;
+        return "You lose!  Rock beats scissors.";
     }
-    else if (humanSelection === "scissors" && computerSelection === "paper") {
-        return("You win!  Scissors beats paper.");
+
+    else if (humanChoice === "scissors" && computerChoice === "paper") {
+        humanScore + 1;
+        return "You win!  Scissors beats paper.";
     }
-    else if (humanSelection === "scissors" && computerSelection === "rock") {
-        return("You lose!  Rock beats scissors.");
+
+    else {
+        return "It's a tie!";
     }
 }
 
+console.log(playRound());
 
 
